@@ -1,0 +1,89 @@
+<div class="fees">
+        <h1>Fees Management System</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                             <form #myForm="ngForm">
+                                <div class="form-group">
+                                    <label for="Student Id">
+                                        Student Id
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stdId" 
+                                           #stdId="ngModel" ngModel
+                                           required
+                                           pattern="[0-9]{3}"
+                                            />
+                                </div>
+                                <div *ngIf="stdId.touched">
+                                    <div *ngIf="stdId.errors?.['required']">
+                                        <b style="color: red;">Student Id Required</b>
+                                    </div>
+                                    <div *ngIf="stdId.errors?.['pattern']">
+                                        <b style="color: red;">Enter correct id</b>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="Student Name">
+                                        Student Name
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stdName" 
+                                           #stdName="ngModel" ngModel
+                                            />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Student Salary">
+                                        Student Fees
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stdSalary" 
+                                           #empSalary="ngModel" ngModel
+                                           />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Fees Status">
+                                        Fees Status
+                                    </label>
+                                    <input type="text"  class="form-control" name="Feessts" #Feessts="ngModel" ngModel />  
+                                </div>
+                                                              
+                                <button class="btn btn-success" (click)="insert(myForm.value)">
+                                    Insert 
+                                </button>
+                            &nbsp;&nbsp;
+                                <button class="btn btn-primary" (click)="update(myForm.value)"  >
+                                    Update 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-danger" (click)="deletestd(myForm.value)">
+                                    Delete 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-warning" (click)="find(myForm.value)" >
+                                    Find 
+                                </button>
+                                &nbsp;&nbsp;
+                                <button class="btn btn-info" (click)="findall()" >
+                                    Find All
+                                </button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+         
+ <br>
+ <h3>{{ result}}</h3>
+
+ <div style="width: 100%;" *ngIf="flag">
+    <table width="80%" align="center" class="table table-borderd">
+     <tr><th>Student Id</th><th>Student Name</th><th> Student Fees</th><th>Fees-Status</th></tr> 
+      <tr *ngFor="let emp of employeeArr">
+          <td> {{emp.id}} </td><td> {{emp.stdName}} </td><td> {{emp.stdSalary}} </td><td>{{emp.Feessts}}</td>
+      </tr>
+   </table>
+   </div>
+</div>
